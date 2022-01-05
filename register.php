@@ -29,37 +29,37 @@ $succes=0;
 if (isset($_REQUEST['username'], $_REQUEST['email'], $_REQUEST['password'])){
 
 
-        $username = stripslashes($_REQUEST['username']);
+        $username = stripslashes($_REQUEST['username']);//retrieves the text enter in the input
         $username = mysqli_real_escape_string($conn, $username);
-        error_log($username);
 
-    $mail = mysqli_query($conn, "SELECT * FROM `users` WHERE mail = '" . $_POST['email'] . "'");
+
+    $mail = mysqli_query($conn, "SELECT * FROM `users` WHERE mail = '" . $_POST['email'] . "'");//check if the email address exists
     if (mysqli_num_rows($mail)){
         $email_use=true;
     } else{
         $email_use=false;
     }
 
-    $name = mysqli_query($conn,"SELECT * FROM `users` where name ='" . $_POST['username'] . "'");
+    $name = mysqli_query($conn,"SELECT * FROM `users` where name ='" . $_POST['username'] . "'");//check if the username exists
     if (mysqli_num_rows($name)){
         $name_use=true;
     }else{
         $name_use=false;
     }
 
-    $email = stripslashes($_REQUEST['email']);
+    $email = stripslashes($_REQUEST['email']);//retrieves the text enter in the input
     $email = mysqli_real_escape_string($conn, $email);
     error_log($email);
 
 
-    $password = stripslashes($_REQUEST['password']);
+    $password = stripslashes($_REQUEST['password']);//retrieves the text enter in the input
     $password = mysqli_real_escape_string($conn, $password);
     error_log($password);
 
 
 
 
-if ($name_use==false && $email_use==false){
+if ($name_use==false && $email_use==false){//registers in the database
     $query ="INSERT into `users` (name, mail, password)
               VALUES ('$username', '$email', '".hash('sha256', $password)."')";
     $resultat = mysqli_query($conn, $query);

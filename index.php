@@ -18,7 +18,9 @@ if(!isset($_SESSION["username"])){
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">
+        <img src="img/promeo.png" width="30" height="30" alt="logoPromeo">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,7 +38,7 @@ if(!isset($_SESSION["username"])){
             <div class="input-group">
                 <input id="TextTask" type="text" class="form-control h-100 ml-2" placeholder="Task name:" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="send()">Add</button>
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="addTask()">Add</button>
                 </div>
             </div>
         </div>
@@ -44,20 +46,16 @@ if(!isset($_SESSION["username"])){
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">task name</th>
-                    <th scope="col">statut</th>
-                    <th scope="col">option</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Task name</th>
+                    <th scope="col">Decline button</th>
                 </tr>
                 </thead>
                 <tbody id="rowTable">
-                <tr id="row1">
-                    <td>
-                        <input type="checkbox" id="task1">
-                    </td>
-                    <td>task1</td>
-                    <td>in progress</td>
-                    <td id="btn-delete"><button id="test" type="button" class="btn btn-outline-danger">delete</button></td>
+                <tr>
+                    <td><input type="checkbox" class="status"></td>
+                    <td>exemple</td>
+                    <td class="deltask"><button  type="button" class="btndelete btn btn-outline-danger">delete</button></td>
 
                 </tr>
 

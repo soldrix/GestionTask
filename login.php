@@ -27,20 +27,20 @@
 session_start();
 
 $conn = mysqli_connect('localhost', 'root', 'root', 'gestiontask');
+
 if (isset($_POST['username'])){
-    echo "good";
-    $username = stripslashes($_REQUEST['username']);
-    $username = mysqli_real_escape_string($conn, $username);
+    $username = stripslashes($_REQUEST['username']);//retrieves the text enter in the input
     $password = stripslashes($_REQUEST['password']);
-    $password = mysqli_real_escape_string($conn, $password);
     $query = "SELECT * FROM `users` WHERE mail='$username' and password='".hash('sha256', $password)."'";
-//    $query = "SELECT * FROM `users` WHERE mail='test@gmail.com'";
+
 
     $result = mysqli_query($conn,$query);
     $donner=$result->fetch_array();
     $rows = mysqli_num_rows($result);
     if($rows==1){
-        $_SESSION['username'] =$donner['name'];
+        $_SESSION['username'] =$donner['name'];//to stock the name of the user
+        $_SESSION['id_user'] =$donner['id'];//to stock the id of the user
+
         header("Location: index.php");
     }else{
         $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
